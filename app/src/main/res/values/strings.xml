@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Egg Timer</string>
+    <string name="tab_text_1">Soft</string>
+    <string name="tab_text_2">Medium</string>
+    <string name="tab_text_3">Hard</string>
+    <string name="launch_app">Launch App</string>
+</resources>
