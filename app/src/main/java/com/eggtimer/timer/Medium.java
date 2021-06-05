@@ -27,7 +27,7 @@ public class Medium extends Fragment {
 
     //Declare a variable to hold count down timer's paused status
     private boolean isCanceled = false;
-    private long MediumValue = 7000;
+    private long MediumValue = 480000;
     private long START_TIME_IN_MILLIS = MediumValue;
     static int count=1;
 

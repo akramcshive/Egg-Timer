@@ -1,5 +1,9 @@
 package com.eggtimer.timer;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,13 +26,15 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.Locale;
 
 public class Soft extends Fragment {
 
     //Declare a variable to hold count down timer's paused status
     private boolean isCanceled = false;
-    private long SoftValue = 5000;
+    private long SoftValue = 360000;
     private long START_TIME_IN_MILLIS = SoftValue;
     static int count=1;
 
@@ -43,10 +49,13 @@ public class Soft extends Fragment {
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View soft =  inflater.inflate(R.layout.soft_layout, container, false);
+
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         mTextViewCountDown = soft.findViewById(R.id.text_view_countdown);
 

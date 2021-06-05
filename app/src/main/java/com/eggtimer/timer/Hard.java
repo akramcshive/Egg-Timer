@@ -27,7 +27,7 @@ public class Hard extends Fragment {
 
     //Declare a variable to hold count down timer's paused status
     private boolean isCanceled = false;
-    private long HardValue = 9000;
+    private long HardValue = 600000;
     private long START_TIME_IN_MILLIS = HardValue;
     static int count=1;
 
