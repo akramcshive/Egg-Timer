@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +22,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
 import java.util.Locale;
+
+import static android.content.ContentValues.TAG;
 
 public class Medium extends Fragment {
 
@@ -43,12 +52,26 @@ public class Medium extends Fragment {
 
     public static final String PRIMARY_NOTIF_CHANNEL = "default";
     public static final int PRIMARY_FOREGROUND_NOTIF_SERVICE_ID = 1001;
-
+    private InterstitialAd mInterstitialAd;
+    private AdView mAdView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View soft =  inflater.inflate(R.layout.soft_layout, container, false);
+
+
+        mAdView = soft.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        prepareAd();
+
+
+
+
+
+
         mTextViewCountDown = soft.findViewById(R.id.text_view_countdown);
 
 
@@ -156,6 +179,13 @@ public class Medium extends Fragment {
             mTimeLeftInMillis = MediumValue;
 
         }
+
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(getActivity());
+        } else {
+            Toast.makeText(getContext(), "The interstitial ad wasn't ready yet.", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
 
@@ -239,6 +269,28 @@ public class Medium extends Fragment {
 //        NotificationManager manager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
 //        manager.notify(0, builder.build());
 //    }
+
+
+    public void prepareAd(){
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(getActivity().getApplicationContext(),"ca-app-pub-2876518515969882/2161396117", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
+    }
 
 
 }

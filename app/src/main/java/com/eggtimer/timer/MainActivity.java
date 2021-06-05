@@ -4,8 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-//        //     Banner ad code goes here
+        //     Banner ad code goes here
 //        MobileAds.initialize(this, new OnInitializationCompleteListener() {
 //            @Override
 //            public void onInitializationComplete(InitializationStatus initializationStatus) {

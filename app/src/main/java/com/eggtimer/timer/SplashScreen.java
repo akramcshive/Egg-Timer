@@ -6,12 +6,19 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SplashScreen extends AppCompatActivity {
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
+public class SplashScreen extends AppCompatActivity {
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -21,6 +28,6 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
 
-            }, 2500);
+            }, 5000);
     }
 }
